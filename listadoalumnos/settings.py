@@ -128,9 +128,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "in-v3.mailjet.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'lagoslautaro7@gmail.com'
-EMAIL_HOST_PASSWORD = 'ctyc iift kptt idwx'
+EMAIL_HOST_USER = os.getenv("MJ_APIKEY_PUBLIC")
+EMAIL_HOST_PASSWORD = os.getenv("MJ_APIKEY_PRIVATE")
