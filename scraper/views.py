@@ -17,7 +17,6 @@ def scrape_view(request):
         if form.is_valid():
             keyword = form.cleaned_data["keyword"]
 
-            # --- 1. Buscar página en Wikipedia ---
             search_url = "https://es.wikipedia.org/w/api.php"
             params = {
                 "action": "query",
@@ -30,7 +29,7 @@ def scrape_view(request):
                 "User-Agent": "Mozilla/5.0 (compatible; DjangoScraper/1.0; +https://example.com)"
             }
 
-            # Obtener JSON de forma segura
+
             response = requests.get(search_url, params=params, headers=headers)
 
             try:
@@ -46,11 +45,9 @@ def scrape_view(request):
                 results["error"] = "No se encontró ninguna página relacionada."
                 return render(request, "scraper/scrape.html", {"form": form, "results": results})
 
-            # Tomar primer resultado
             page_title = data["query"]["search"][0]["title"]
             page_url = f"https://es.wikipedia.org/wiki/{page_title.replace(' ', '_')}"
 
-            # --- 2. Scraping del artículo ---
             html = requests.get(page_url, headers=headers).text
             soup = BeautifulSoup(html, "html.parser")
 
