@@ -29,7 +29,7 @@ def signup(request):
                     message=f'Hola {user.username}, gracias por registrarte.',
                     from_email=None,
                     recipient_list=[user.email],
-                    fail_silently=False
+                    fail_silently=True
                 )
 
                 return redirect('dashboard')
