@@ -69,8 +69,6 @@ def scrape_view(request):
                 "page_url": page_url,
             }
 
-            send_results_email(request.user.email, keyword, results)
-
     else:
         form = ScraperForm()
 

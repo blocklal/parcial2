@@ -24,13 +24,6 @@ def signup(request):
                 user.save()
                 login(request, user)
 
-                send_mail(
-                    subject='¡Bienvenido al listado!',
-                    message=f'Hola {user.username}, gracias por registrarte.',
-                    from_email=None,
-                    recipient_list=[user.email],
-                    fail_silently=True
-                )
 
                 return redirect('dashboard')
             except IntegrityError:

@@ -59,7 +59,6 @@ def alumno_pdf(request, alumno_id):
         to=[request.user.email],
     )
     email.attach(f"{alumno.nombre}.pdf", pdf_data, "application/pdf")
-    email.send()
 
     messages.success(request, "📧 PDF enviado correctamente a tu correo")
     return redirect('dashboard')
