@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow-sm p-4 text-center border-0" style="border-radius: 15px;">
+                <h1 class="mb-3" style="color:#1a1a1a;">¡Bienvenido a la página principal!</h1>
+
+                {% if user.is_authenticated %}
+                    <p class="lead">
+                        Ya puedes acceder al <strong>dashboard de alumnos</strong>.
+                    </p>
+                    <div class="d-flex justify-content-center">
+                        <a href="/alumnos/dashboard" class="btn btn-violeta btn-sm fs-5" style="width: auto; padding: 8px 20px;">
+                            Ir al Dashboard
+                        </a>
+                    </div>
+                {% else %}
+                    <p class="lead">
+                        <strong>¡Inicia sesión o regístrate</strong> para acceder a los datos de los alumnos!
+                    </p>
+
+                    <div class="mt-4">
+                        <a href="/signin" class="btn btn-violeta me-2">Iniciar sesión</a>
+                        <a href="/signup" class="btn btn-outline-violeta">Registrarse</a>
+                    </div>
+
+                {% endif %}
+            </div>
+
+            <div class="card shadow-sm p-4 text-center border-0" style="border-radius: 15px;">
+                <h1 class="mb-3" style="color:#1a1a1a;">¡Nueva función!</h1>
+
+                {% if user.is_authenticated %}
+                    <p class="lead">
+                        Ahora puedes probar el <strong>scraper</strong>.
+                    </p>
+                    <div class="d-flex justify-content-center">
+                        <a href="/scraper" class="btn btn-violeta btn-sm fs-5" style="width: auto; padding: 8px 20px;">
+                            Ir al scraper
+                        </a>
+                    </div>
+                {% else %}
+                    <p class="lead">
+                        ¡Inicia sesión o regístrate para probar el<strong> scraper</strong>!
+                    </p>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

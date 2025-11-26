@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="text-center mb-4">Lista de alumnos</h2>
+
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{% url 'crear_alumno' %}" class="btn btn-violeta">
+            Crear alumno
+        </a>
+    </div>
+
+    {% if alumnos %}
+        <div class="row g-4">
+            {% for alumno in alumnos %}
+            <div class="col-md-4">
+                <div class="card shadow p-3" style="border-radius: 15px;">
+                    <h5 class="text-center mb-3">{{ alumno.nombre|title }}</h5>
+
+                    <p><strong>Edad:</strong> {{ alumno.edad }}</p>
+                    <p><strong>Curso:</strong> {{ alumno.curso }}</p>
+
+                    <a href="{% url 'alumno_pdf' alumno.id %}" 
+                       class="btn btn-violeta w-100 mt-1">
+                        Enviar PDF por correo
+                    </a>
+                    <a href="{% url 'borrar_alumno' alumno.id %}"
+                    class="btn btn-danger  mt-1"
+                    onclick="return confirm('¿Seguro que deseas borrar este alumno?');">
+                    Borrar
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center">
+            No hay alumnos registrados.
+        </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

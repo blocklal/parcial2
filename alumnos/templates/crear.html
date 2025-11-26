@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="d-flex justify-content-center mt-5">
+    <div class="card shadow p-4 text-center" 
+         style="width: 420px; border-radius: 15px;">
+
+        <h3 class="mb-4">Crear alumno</h3>
+
+        {% if form.errors %}
+        <div class="alert alert-danger text-start">
+            {% for field, errors in form.errors.items %}
+                <strong>{{ field|title }}:</strong> {{ errors|striptags }}<br>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3 text-start">
+                <label class="form-label">Nombre</label>
+                {{ form.nombre }}
+            </div>
+
+            <div class="mb-3 text-start">
+                <label class="form-label">Edad</label>
+                {{ form.edad }}
+            </div>
+
+            <div class="mb-3 text-start">
+                <label class="form-label">Curso</label>
+                {{ form.curso }}
+            </div>
+
+            <button class="btn btn-violeta w-100 mt-2" type="submit">
+                Guardar alumno
+            </button>
+
+            <a href="{% url 'dashboard' %}" 
+               class="btn btn-secondary w-100 mt-3">
+                Volver
+            </a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
